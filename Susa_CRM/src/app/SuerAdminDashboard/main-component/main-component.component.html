@@ -1,0 +1,78 @@
+<section class="two py-5">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 col-md-6 col-sm-6 col-12 mt-3">
+				<div class="d-flex bg-white shadow p-3">
+					<div class="pt-2 pe-3">
+
+					</div>
+					<div>
+						<h5 class="info">Total No of Call</h5>
+
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 col-12 mt-3">
+				<div class="d-flex bg-white shadow p-3">
+					<div class="p-2">
+
+					</div>
+					<div>
+						<h5 class="info">Total call Today</h5>
+
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 col-12 mt-3">
+				<div class="d-flex bg-white shadow p-3">
+					<div class="p-2">
+
+					</div>
+					<div>
+						<h5 class="info">BacKlog</h5>
+
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6 col-sm-6 col-12 mt-3">
+				<div class="d-flex bg-white shadow p-3">
+					<div class="p-2">
+
+					</div>
+					<div>
+						<h5 class="info">Total Revenu</h5>
+
+					</div>
+				</div>
+			</div>
+      <div class="col-lg-12 col-md-6 col-sm-6 col-12 mt-3">
+				<div class="d-flex bg-white shadow p-3">
+					<div class="p-2">
+
+					</div>
+					<div>
+						<h5 class="info">Negotiations</h5>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<div class="container">
+  <div class="row">
+      <div class="col-custom-3">
+
+          <canvas class="chart1" baseChart [type]="'pie'" [data]="genderChartData"></canvas>
+          <canvas class="chart1" baseChart [type]="'doughnut'" [data]="geoChartData"></canvas>
+      </div>
+      <div class="col-custom-9">
+
+          <canvas class="chart" baseChart [type]="'bar'" [data]="data"></canvas>
+          <canvas class="chart" baseChart [type]="'line'" [data]="data1"></canvas>
+      </div>
+  </div>
+</div>
+

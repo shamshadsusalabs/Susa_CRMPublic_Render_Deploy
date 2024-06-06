@@ -1,0 +1,19 @@
+/* Assuming the calendar element has a class named 'my-calendar' */
+.my-calendar{
+  margin-top: 60px; /* Adds space at the top */
+  width: 98%;
+  text-align: none;
+  height: 85vh;/* Reduces the width to fit better next to a sidebar */
+  margin-left: auto; /* Centers the calendar if needed */
+  margin-right: auto; /* Centers the calendar if needed */
+}
+.add_new{
+position: absolute;
+top:13%;
+left: 30%;
+  color:#000000;
+  border-radius: 15px;
+  background: #e0e0e0;
+  box-shadow:5px 5px 4px #bcbcbc,
+               -5px -5px 4px #ffffff;
+}

@@ -1,0 +1,81 @@
+
+.row.no-gutters {
+  height: 600px;
+  position: relative;
+}
+
+
+.row.no-gutters .col-md-6 img {
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.row.no-gutters .col-md-6:last-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch; /* Ye sure karega ki child elements puri width ko stretch karen */
+  height: 108%; /* Ye sure karega ki column ki height parent ke barabar ho */
+  z-index: 10;
+  margin-left: -70px;
+}
+
+.bg-white {
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 10px 0px 0px 10px;
+  width: 90%; /* Full width to match parent column */
+  height: 100%; /* Full height to stretch inside the column */
+}
+
+
+
+.input-group .form-control {
+  position: relative;
+}
+
+.input-group-text {
+  border: none;
+  background: transparent; /* Removes background to blend in */
+}
+
+.input-group .form-control:focus + .input-group-append .input-group-text {
+  color: #495057; /* Change as needed */
+}
+
+.input-group-append {
+  position: absolute;
+  right: 10px; /* Adjust this value based on padding inside the input */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Makes the icon non-interactive */
+}
+
+
+
+
+
+body {
+  overflow: hidden;
+}
+
+
+@media (max-width: 768px) {
+  .row.no-gutters {
+    height: auto;
+    min-height: 400px;
+  }
+
+  .row.no-gutters .col-md-6 {
+    overflow-y: auto;
+  }
+
+  .row.no-gutters .col-md-6:last-child {
+    margin-left: 0;
+  }
+
+  body {
+    overflow: auto;
+  }
+}

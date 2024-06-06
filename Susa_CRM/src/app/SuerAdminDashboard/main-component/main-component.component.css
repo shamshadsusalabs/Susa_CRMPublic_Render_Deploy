@@ -1,0 +1,58 @@
+.info {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 26px;
+  color: #171719;
+  font-weight: bold;
+}
+h5 {
+
+  font-family: "Lexend Deca", sans-serif;
+}
+
+.bg-white.shadow.p-3 {
+  border-radius: 10px;
+}
+
+
+
+
+
+
+
+ .custom-div {
+  height: 100px; /* Just for visibility, adjust as needed */
+
+  margin-bottom: 10px; /* Spacing between divs */
+}
+
+/* Custom breakpoint at 968px */
+@media (max-width: 968px) {
+  .col-custom-3, .col-custom-9 {
+      flex: 0 0 100%;
+      max-width: 100%;
+  }
+}
+
+/* Default behavior for larger screens */
+@media (min-width: 969px) {
+  .col-custom-3 {
+      flex: 0 0 30%;
+      max-width: 30%;
+  }
+  .col-custom-9 {
+      flex: 0 0 70%;
+      max-width: 70%;
+  }
+}
+
+.chart, .chart1 {
+ margin-bottom: 20Px !important; /* Adding padding around each chart */
+  width: 100%; /* Ensuring chart fills the container width */
+  height: auto;
+  border-radius: 23px;
+  background: rgb(243, 243, 245);
+
+  box-shadow: 5px 5px 4px #bcbcbc, -5px -5px 4px #ffffff;
+
+}

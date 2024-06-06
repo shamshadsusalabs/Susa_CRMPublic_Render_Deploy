@@ -1,0 +1,14 @@
+<div class="container-fluid g-0">
+  <app-navbar (sideNavToggled)="sideNavStatus= $event;"  [ngClass]="{'app-navbar': sideNavStatus}"></app-navbar>
+
+  <div class="horizontal-line"></div>
+<main>
+
+  <app-sidenav [sideNavStatus]="sideNavStatus" [ngClass]="{'app-sidenav-open': sideNavStatus}"></app-sidenav>
+  <div class="display-area"  [ngClass]="{'display-area-shrink': sideNavStatus}">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+
+ </div>
+

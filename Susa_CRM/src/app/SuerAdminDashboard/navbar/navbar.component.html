@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand navbar-light bg-light px-2">
+  <div class="container-fluid side-nav-button p-2 me-3 text-light">
+
+    <i  (click)="SideNavToggled()" class="fa-solid fa-bars" ></i>
+    <a class="navbar-brand px-4" href="#">Super Admin DashBoard</a>
+    <div class="navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-items dropdown">
+
+
+        </li>
+      </ul>
+
+      <form class="d-flex" *ngIf="showSearch">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      </form>
+      <button class="btn" (click)="toggleSearch($event)">
+        <i class="fa fa-search"></i>
+      </button>
+      <button class="btn" (click)="logout($event)">
+        <i class="fa fa-sign-out-alt"></i>
+        <span>Logout</span>
+    </button>
+
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,187 @@
+<div class="table">
+  <div class="table_header">
+    <p>Client Details</p>
+    <div>
+      <div *ngIf="isLoading" class="snackbar">
+        Please wait, uploading...
+      </div>
+      <input placeholder="Search products..." [(ngModel)]="searchText" (ngModelChange)="updateDisplayedUsers()">
+       <button class="add_new" (click)="fileInput.click()">Add document</button>
+      <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
+
+      <button class="add_new" style="margin-left:20px;" (click)="showDeleteModal()">Delete file</button>
+
+    </div>
+  </div>
+  <div class="table_section">
+    <table>
+      <thead>
+        <tr>
+          <th>Company_Name
+            </th>
+          <th>Type</th>
+           <th>
+            Employee size</th>
+          <th>City</th>
+          <th>Country</th>
+          <th>Linkedin</th>
+          <th>view Details</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of paginatedUsers">
+          <td class="word-wrap">
+            {{ data.Account_Name }}
+          </td>
+
+          <td class="word-wrap">{{ data.Vertical}}</td>
+          <td>{{ data['Employee size'] }}</td>
+          <td>{{ data.City}}</td>
+          <td>{{ data.Country}}</td>
+          <td class="word-wrap">{{ data.Linkedin
+          }}</td>
+         <td><button class="btn" (click)="showDetails(data)">View Details</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<nav class="pagination-nav">
+  <button class="page-button left" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+  <!-- <span class="page-number">{{ currentPage }}</span> -->
+  <span class="page-number">
+    {{ startItemIndex() }} – {{ endItemIndex() }} of {{ excelData.length }}
+  </span>
+  <button class="page-button right" (click)="nextPage()" [disabled]="currentPage * itemsPerPage >= excelData.length">Next</button>
+</nav>
+
+
+
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="detailModalLabel">{{ selectedDataItem?.Account_Name }}</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row mb-2">
+          <div class="col-md-6"><strong>Address:</strong> {{ selectedDataItem?.Address }}</div>
+          <div class="col-md-6"><strong>Boardline:</strong> {{ selectedDataItem?.Boardline }}</div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-md-6"><strong>State:</strong> {{ selectedDataItem?.State }}</div>
+          <div class="col-md-6"><strong>Employee Size:</strong> {{ selectedDataItem?.['Employee size'] }}</div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-md-6"><strong>Vertical:</strong> {{ selectedDataItem?.Vertical }}</div>
+          <div class="col-md-6"><strong>LinkedIn:</strong> <a href="{{ selectedDataItem?.Linkedin }}" target="_blank">{{ selectedDataItem?.Linkedin }}</a></div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-md-6"><strong>QM New:</strong> {{ selectedDataItem?.['QM New'] }}</div>
+          <div class="col-md-6"><strong>Cloud Vendor:</strong> {{ selectedDataItem?.['Which Cloud Vendor is in Use'] }}</div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-md-6"><strong>Endpoint Vendor Names:</strong> {{ selectedDataItem?.['What are the Endpoint vendor names?'] }}</div>
+          <div class="col-md-6"><strong>Enterprise Apps:</strong> {{ selectedDataItem?.['What are the Enterprise App( ERP, CRM etc) in use?'] }}</div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-md-6"><strong>Hosting Type:</strong> {{ selectedDataItem?.['What is the Hosting Type in Use?'] }}</div>
+        </div>
+
+
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="openFollowUpModal()">Status</button>
+
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Delete File Modal -->
+<div class="modal fade" id="deleteFileModal" tabindex="-1" aria-labelledby="deleteFileModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteFileModalLabel">Delete File</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group">
+          <li *ngFor="let entry of commonFields" class="list-group-item">
+           Filename: {{ entry.filename }}
+           <button class="add_new" (click)="onDeleteFile(entry.
+           fieldId
+           )">Delete</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="followUpModal" tabindex="-1" aria-labelledby="followUpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="followUpModalLabel">Set Follow-Up</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="followUpDate" class="form-label">Follow-Up Date and Time:</label>
+          <ejs-datetimepicker
+            placeholder="Choose a date and time"
+            [value]="dateValue"
+            [min]="minDate"
+            [max]="maxDate"
+            (change)="onDateChange($event)"
+            [enableMask]="true"
+            format="dd-MMM-yy hh:mm">
+          </ejs-datetimepicker>
+        </div>
+        <div class="mb-3">
+          <label for="holdOptions" class="form-label">Hold:</label>
+          <select class="form-select" id="holdOptions" [(ngModel)]="holdOption">
+            <option value="noHold">No Hold</option>
+            <option value="hold">Hold</option>
+          </select>
+        </div>
+        <div class="mb-3" *ngIf="holdOption === 'hold'">
+          <label for="holdDate" class="form-label">Hold Date and Time:</label>
+          <ejs-datetimepicker
+            id="holdDate"
+            placeholder="Choose a date and time"
+            [(ngModel)]="holdDate"
+            [min]="minDate"
+            [max]="maxDate",
+            (change)="onDateChangeHold($event)"
+            [enableMask]="true"
+            format="dd-MMM-yy hh:mm">
+          </ejs-datetimepicker>
+        </div>
+         <div class="mb-3">
+          <label for="diedOptions" class="form-label">Died:</label>
+          <select class="form-select" id="diedOptions" [(ngModel)]="died">
+            <option value="true">True</option>
+            <option value="false">False</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="additionalNotes" class="form-label">Comment:</label>
+          <textarea class="form-control" id="additionalNotes" rows="3" [(ngModel)]="additionalNotes"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="saveFollowUp()">Save</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
