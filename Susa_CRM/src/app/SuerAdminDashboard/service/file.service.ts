@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class FileService {
 
-  private baseUrl = 'https://susa-crmpublic-render-deploy-3.onrender.com/Api/Document/'; // Adjust this URL based on your actual server URL
+  private baseUrl = 'https://susa-crmpublic-render-deploy-api.onrender.com/Api/Document/'; // Adjust this URL based on your actual server URL
 
   constructor(private http: HttpClient) { }
 
