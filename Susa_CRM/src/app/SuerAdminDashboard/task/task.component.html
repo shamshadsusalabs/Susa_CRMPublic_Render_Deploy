@@ -126,6 +126,7 @@
   </div>
 </div>
 
+<!-- Replace the content of your modal -->
 <div class="modal fade" id="followUpModal" tabindex="-1" aria-labelledby="followUpModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -136,15 +137,7 @@
       <div class="modal-body">
         <div class="mb-3">
           <label for="followUpDate" class="form-label">Follow-Up Date and Time:</label>
-          <ejs-datetimepicker
-            placeholder="Choose a date and time"
-            [value]="dateValue"
-            [min]="minDate"
-            [max]="maxDate"
-            (change)="onDateChange($event)"
-            [enableMask]="true"
-            format="dd-MMM-yy hh:mm">
-          </ejs-datetimepicker>
+          <input type="datetime-local" class="form-control" id="followUpDate" [(ngModel)]="dateValue" [min]="minDate" [max]="maxDate">
         </div>
         <div class="mb-3">
           <label for="holdOptions" class="form-label">Hold:</label>
@@ -155,18 +148,9 @@
         </div>
         <div class="mb-3" *ngIf="holdOption === 'hold'">
           <label for="holdDate" class="form-label">Hold Date and Time:</label>
-          <ejs-datetimepicker
-            id="holdDate"
-            placeholder="Choose a date and time"
-            [(ngModel)]="holdDate"
-            [min]="minDate"
-            [max]="maxDate",
-            (change)="onDateChangeHold($event)"
-            [enableMask]="true"
-            format="dd-MMM-yy hh:mm">
-          </ejs-datetimepicker>
+          <input type="datetime-local" class="form-control" id="holdDate" [(ngModel)]="holdDate" [min]="minDate" [max]="maxDate">
         </div>
-         <div class="mb-3">
+        <div class="mb-3">
           <label for="diedOptions" class="form-label">Died:</label>
           <select class="form-select" id="diedOptions" [(ngModel)]="died">
             <option value="true">True</option>
