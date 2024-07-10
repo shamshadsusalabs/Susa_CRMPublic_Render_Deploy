@@ -14,7 +14,7 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 app.use(bodyParser.json());
 var corsOptions = {
-    origin: 'http://localhost:4200', // Specify your trusted domain
+    origin: ['http://localhost:4200','https://susa-crmpublic-render-deploy-3.onrender.com'], // Specify your trusted domain
     optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));
