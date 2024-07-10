@@ -5,7 +5,8 @@ const { check,validationResult } = require('express-validator');
 const SuperAdminSchema = require('../Model/SuperAdmin');
 const CustomerSchema = require('../Model/Customer');
 const EmployerSchemas = require('../Model/Employer');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
+
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
