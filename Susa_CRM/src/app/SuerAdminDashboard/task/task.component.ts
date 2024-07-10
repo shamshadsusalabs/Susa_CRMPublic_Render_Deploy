@@ -21,17 +21,17 @@ export class TaskComponent implements OnInit {
   isLoading: boolean = false;
   excelData: any[] = [];
   displayedUsers: any[] = [];
-  selectedDataItem: any = null;
+  // selectedDataItem: any = null;
   newComment: string = '';
   status: boolean = false;
 
-  public dateValue: Date = new Date("2024-05-12"); // Initialize with May 12, 2024
-  // Initialize with May 12, 2024
-public minDate: Date = new Date("2024-01-01");   // Initialize with January 1, 2024
-public maxDate: Date = new Date("2024-12-31");
-holdDate: Date | null = null;
-holdOption: string = 'noHold';
-additionalNotes: string = '';
+//   public dateValue: Date = new Date("2024-05-12"); // Initialize with May 12, 2024
+//   // Initialize with May 12, 2024
+// public minDate: Date = new Date("2024-01-01");   // Initialize with January 1, 2024
+// public maxDate: Date = new Date("2024-12-31");
+// holdDate: Date | null = null;
+// holdOption: string = 'noHold';
+// additionalNotes: string = '';
 died:boolean=false // Initialize with December 31, 2024
 selectedDate:Date = new Date();
   constructor(
@@ -62,36 +62,38 @@ selectedDate:Date = new Date();
     this.holdDate = event.value;
     console.log("Selected date:", this.holdDate);
   }
+
+  selectedDataItem: any;
+  dateValue!: string;
+  minDate: string = new Date().toISOString().slice(0, 16);
+  maxDate: string = new Date(2100, 0, 1).toISOString().slice(0, 16);
+  holdOption: string = 'noHold';
+  holdDate!: string;
+  // died: boolean = false;
+  additionalNotes: string = '';
+
+
   saveFollowUp(): void {
     const id = this.selectedDataItem._id;
     const email = localStorage.getItem('email');
 
     const followUpData = {
       email: email,
-      followUpDate: this.selectedDate, // Use directly from the dateValue property
+      followUpDate: new Date(this.dateValue),
       holdOption: this.holdOption,
       died: this.died,
       additionalNotes: this.additionalNotes,
-      holdDate: this.holdDate
+      holdDate: this.holdOption === 'hold' ? new Date(this.holdDate) : null
     };
 
-    // If hold option is selected, include hold date in follow-up data
-    if (this.holdOption === 'hold') {
-      followUpData.holdDate = new Date();
-    }
-
     console.log('Follow-up data:', followUpData);
-    console.log('Date Value:', this.dateValue);
 
     this.fileService.updateDocument(id, followUpData).subscribe({
       next: (response) => {
-        // Handle successful save
         console.log('Follow-up data saved:', response);
         this.snackBar.open('Follow-up time set!', 'Close', {
           duration: 2000
         }).afterDismissed().subscribe(() => {
-          // Close the modal after snackbar is dismissed
-          console.log('Before closing modal');
           this.modalService.dismissAll();
         });
       },
@@ -100,6 +102,7 @@ selectedDate:Date = new Date();
       }
     });
   }
+
 
   ngOnInit() {
 
