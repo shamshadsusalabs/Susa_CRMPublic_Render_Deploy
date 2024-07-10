@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-private baseUrl= 'http://localhost:3000/Api/SuperAdmin/login'
+private baseUrl= 'https://susa-crmpublic-render-deploy-3.onrender.com/Api/SuperAdmin/login'
 
   constructor(private http: HttpClient) { }
 

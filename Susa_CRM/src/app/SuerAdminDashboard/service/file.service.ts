@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class FileService {
 
-  private baseUrl = 'http://localhost:3000/Api/Document/'; // Adjust this URL based on your actual server URL
+  private baseUrl = 'https://susa-crmpublic-render-deploy-3.onrender.com/Api/Document/'; // Adjust this URL based on your actual server URL
 
   constructor(private http: HttpClient) { }
 
@@ -39,7 +39,7 @@ export class FileService {
   uploadFile(file: File) {
     const formData: FormData = new FormData();
     formData.append('File', file, file.name);
-    return this.http.post('http://localhost:3000/Api/Document/upload', formData, {
+    return this.http.post('https://susa-crmpublic-render-deploy-3.onrender.com/Api/Document/upload', formData, {
       reportProgress: true,
       observe: 'events', responseType: 'text'
     });
